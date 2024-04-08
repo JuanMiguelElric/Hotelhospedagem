@@ -23,6 +23,7 @@ Route::middleware(['auth','user-access:donohotel'])->group(function(){
         'hotel'=> HotelController::class
     ],['shallow'=>true]);
     Route::get('/home/hotel', [App\Http\Controllers\HomeController::class, 'donoHotelHome'])->name('home.donohotel');
+    Route::get('/hoteljson',[HotelController::class ,'HotelJson'])->name('hotel.json');
 
 });
 Route::get('/', function () {

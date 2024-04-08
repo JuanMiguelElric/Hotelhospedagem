@@ -36,9 +36,20 @@
             icon="" collapsible >
 
             </x-adminlte-card>
+
            
         </div>
+    </div>
+    <div class="col-12 mt-3">
+        @include('donoHotel.componentsforHotel.datatble',[
+            'idBotao'=>'refresh',
+            'idTable' => '#table5',
+        ])
     </div>
 </div>
 
 @endsection
+@push('js')
+<script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    
+@endpush
