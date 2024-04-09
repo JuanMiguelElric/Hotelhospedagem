@@ -210,6 +210,9 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+
+        'FileInput'=>kartik\file\FileInput::class,
+
     ])->toArray(),
 
 ];

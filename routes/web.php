@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\cidade\CidadeController;
 use App\Http\Controllers\Hotel\HotelController;
+use App\Http\Controllers\Hotel\Quartos\QuartoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,8 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
 });
 Route::middleware(['auth','user-access:donohotel'])->group(function(){
     Route::resources( [
-        'hotel'=> HotelController::class
+        'hotel'=> HotelController::class,
+        'hotel.quartos'=>QuartoController::class
     ],['shallow'=>true]);
     Route::get('/home/hotel', [App\Http\Controllers\HomeController::class, 'donoHotelHome'])->name('home.donohotel');
     Route::get('/hoteljson',[HotelController::class ,'HotelJson'])->name('hotel.json');
