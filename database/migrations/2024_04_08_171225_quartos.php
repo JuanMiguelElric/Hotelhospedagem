@@ -17,6 +17,8 @@ return new class extends Migration
             $table->binary('imagens');
             $table->string('descricao');
             $table->string('valor');
+            $table->string('tipo_quarto');
+            $table->string('quantidade_pessoas');
             $table->unsignedInteger('hotel_id');
             $table->timestamps();
 

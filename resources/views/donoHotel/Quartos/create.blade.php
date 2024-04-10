@@ -7,25 +7,34 @@
         <x-adminlte-card title="Registrar meu Hotel" theme="light" theme-mode="full" class="elevation-3 text-black"
         body-class="bg-light" header-class="bg-primary" footer-class="bg-primary border-top rounded border-light"
         icon="" collapsible>
-                <form action="" method="POST" id="form">
+                <form action="{{route('hotel.quartos.store', $hotel) }}" method="POST" id="form">
                 @csrf
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             {{-- inputs --}}
-                            <x-adminlte-input name="nome_hotel" placeholder="Informe aqui o numero do quarto:"
-                                        label="Informe aqui o numero do quarto:" value="{{ old('setor') }}" />
+                            <x-adminlte-input name="quarto" placeholder="Informe aqui o numero do quarto:"
+                                        label="Informe aqui o numero do quarto:" value="{{ old('quarto') }}" />
                                         
                                         
                                         
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             {{-- inputs --}}
-                            <x-adminlte-input name="nome_hotel" placeholder="Informe aqui o valor do quarto:"
-                                        label="Informe aqui o valor do quarto:" value="{{ old('setor') }}" />
+                            <x-adminlte-input name="valor" placeholder="R$00,00"
+                                        label="Informe aqui o valor do quarto:" data-mask="R$00000,00" value="{{ old('setor') }}" />
                                         
                                         
                                         
                         </div>
+                        <div class="col-md-3">
+                            {{-- inputs --}}
+                            <x-adminlte-input name="quantidade_pessoas" placeholder="000"
+                                        label="quantidade de pessoas para esse quarto" data-mask="0000" value="{{ old('setor') }}" />
+                                        
+                                        
+                                        
+                        </div>
+                        <!--
                         <div class="col-12">
                             <label for="">Adicione imagens para esse quarto:</label>
                             <div class="col-12" id="campomarcao" >
@@ -33,24 +42,30 @@
                                 <a href="#" id="Adicionar_campo" data-num-opcoes="9"><i class="fa fa-plus"></i> Clique aqui para adicionar as imagens</a>
                                 <div id="imendaHTMLemail"></div>
                             </div>
-                        </div>
-                        <!--
-                        <div>
-                            <label class="picture" for="picture__input" tabIndex="0">
-                                <span class="picture__image"></span>
-                            </label>
+                        </div>-->
+                        <div class="col-12">
                             
-                            <input type="file" name="picture__input" id="kifBasic">
+
+                            <x-adminlte-select label="Selecione aqui uma avaliação para o usuário responder" id="tipo_pergunta" name="tipo_quarto"
+                            class="select-options">
+                            
+                                    
+                                        <option value="Quarto Solteiro">Quarto Solteiro</option>
+                                        <option value="Quarto Casal">Quarto Casal</option>
+                                        <option value="Dormitório">Dormitório</option>
+                                        <option value="Simples">Simples</option>
+                                        <option value="Master">Master</option>
+                            
+                            </x-adminlte-select>
                         </div>
-                    -->
                       
                      
          
 
                         <div class="col-md-12">
                             {{-- inputs --}}
-                            <x-adminlte-textarea name="cep"  placeholder="Digite o CEP de localização do Hotel"
-                            label="Digite o CEP de localização do Hotel:"  value="{{ old('cep') }}" >
+                            <x-adminlte-textarea name="descricao"  placeholder="Informações adicionais do quarto"
+                            label="Informações adicionais do quarto"  value="{{ old('cep') }}" >
                             </x-adminlte-textarea>
           
                                         
@@ -72,84 +87,19 @@
 
 @endsection
 
-@push('css')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-@endpush
+
 
 @push('js')
 <script>
-    var idContador = 0;
-    var idContador1 = 0;
+    const textDesc = document.querySelector('#descricao');
+        textDesc .addEventListener("keyup", e =>{
+            let cHeight = e.target.scrollHeight;
+            console.log(cHeight)
+            textDesc.style.height = `${cHeight}px`
+    })
 
-    function exclui(id) {
-        $("#" + id).parent().remove();
-        idContador--; // Subtrai 1 do contador quando excluímos um campo
-         // Subtrai 1 do contador quando excluímos um campo
-    }
-
-
-    $(document).ready(function() {
-        $("#Adicionar_campo").click(function(e) {
-            e.preventDefault();
-            var tipoCampo = "email";
-            adicionaCampo(tipoCampo);
-        });
-
-
-
-        function adicionaCampo(tipo) {
-            idContador++;
-
-            var idCampo = "campoExtra" + idContador;
-            var idForm = "formExtra" + idContador;
-
-            var html = `
-                <div class="input-group" id="${idForm}">
-                    <div class="input-group" id="${idCampo}">
-                        <label class="picture" for="picture__input" tabIndex="0">
-                            ${idContador}ª
-                            <span class="picture__image${idContador}"></span>
-                        </label>
-                        
-                        <input type="file" name="picture__input${idContador}" id="kifBasic${idContador}">
-                        <button class='btn' onclick='exclui("${idCampo}")' type='button'><span class='fa fa-trash'></span></button>
-                    </div>
-                </div>
-            `;
-                    
-            $("#imendaHTML" + tipo).append(html);
-
-            const inputFile = document.querySelector("#kifBasic" + idContador);
-    
-            const pictureImage = document.querySelector(".picture__image" + idContador);
-            const pictureImageTxt = "Choose an image";
-            pictureImage.innerHTML = pictureImageTxt;
-
-            inputFile.addEventListener("change", function (e) {
-                const inputTarget = e.target;
-                const file = inputTarget.files[0];
-
-                if (file) {
-                    const reader = new FileReader();
-
-                    reader.addEventListener("load", function (e) {
-                        const readerTarget = e.target;
-
-                        const img = document.createElement("img");
-                        img.src = readerTarget.result;
-                        img.classList.add("picture__img");
-
-                        pictureImage.innerHTML = "";
-                        pictureImage.appendChild(img);
-                    });
-
-                    reader.readAsDataURL(file);
-                } else {
-                    pictureImage.innerHTML = pictureImageTxt;
-                }
-            });
-        }
-    });
 </script>
+<script src="{{ asset('resources/jquery.mask.js') }}"></script>
+
 @endpush
 
