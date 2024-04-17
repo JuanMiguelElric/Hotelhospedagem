@@ -8,10 +8,24 @@
         <x-adminlte-card title="Adicionar Imagens" theme="light" theme-mode="full" class="elevation-3 text-black"
         body-class="bg-light" header-class="bg-primary" footer-class="bg-primary border-top rounded border-light"
         icon="" collapsible>
-        <form action="{{route('hotel.quartos.images.store', [$hotel, $quarto]) }}" method="POST" id="form">
+        <form action="{{route('hotel.quartos.images.store', [$hotel, $quarto]) }}" method="POST" id="form" enctype="multipart/form-data">
             @csrf
             <div class="col-12">
-                <label for="">Adicione imagens para esse quarto:</label>
+                <div class=" d-flex flex-wrap" >
+                    <div class="card mr-2" >
+                        <div class="card-img-top">
+                            <label class="picture" for="picture__input" tabIndex="0">
+                              
+                                <span class="picture__image"></span>
+                            </label>
+                        </div>
+                                
+                                <input type="file" name="image[]" value="" id="kifBasic">
+
+                    </div>
+                </div>
+   
+                
                 <div class="col-12" id="campomarcao" >
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -22,6 +36,7 @@
                     <div class="d-flex flex-wrap" id="imendaHTMLemail"></div>
                  
                 </div>
+            
             </div>
             <x-slot name="footerSlot">
                 <x-adminlte-button type="submit" form="form" class="d-flex  ml-auto" theme="primary"
@@ -111,6 +126,38 @@
             });
         }
     });
+</script>
+<script>
+    const inputFile = document.querySelector("#kifBasic" );
+    
+    const pictureImage = document.querySelector(".picture__image" );
+    const pictureImageTxt = "Choose an image";
+    pictureImage.innerHTML = pictureImageTxt;
+
+    inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                const readerTarget = e.target;
+
+                const img = document.createElement("img");
+                img.src = readerTarget.result;
+                img.classList.add("picture__img");
+
+                pictureImage.innerHTML = "";
+                pictureImage.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            pictureImage.innerHTML = pictureImageTxt;
+        }
+    });
+
 </script>
     
 @endpush

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('imagens_quartos',function(Blueprint $table){
             $table->id();
             $table->string('imagen');
+            $table->string('path');
             $table->unsignedInteger('quartos_id');
             $table->timestamps();
         });

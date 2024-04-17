@@ -8,6 +8,8 @@ use App\Models\Imagem;
 use App\Models\Quarto;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\search;
+
 class QuartoController extends Controller
 {
     public function index(Hotel $hotel){
@@ -66,10 +68,36 @@ class QuartoController extends Controller
 
         dd($data);
     }
+
+    public function QuartoJson($id){
+        $searchs = Quarto::where('hotel_id',$id)->get();
+     
+
+        if($searchs->isEmpty()){
+            return response()->json(["type"=>"mesage", "quartos"=>[]],200);
+        }
+
+        $quartosdeHoteislist=[];
+
+        foreach($searchs as $search)
+        {
+            $quartosdeHoteislist[]=[
+                'quarto'=>$search->quarto,
+                'valor'=>$search->valor,
+                'tipo_quarto'=>$search->tipo_quarto,
+            ];
+        }
+        return response()->json(compact('quartosdeHoteislist'));
+
+
+    }
     public function edit(){
         //
     }
     public function update(){
+        //
+    }
+    public function show(){
         //
     }
     public function destroy(){

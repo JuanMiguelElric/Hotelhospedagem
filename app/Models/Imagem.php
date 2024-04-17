@@ -11,7 +11,8 @@ class Imagem extends Model
     use HasFactory;
     protected $table = 'imagens_quartos';
     protected $fillable = [
-        'imagem',
+        'imagen',
+        'path',
         'quartos_id',
     ];
     public function quarto():BelongsTo
