@@ -8,7 +8,17 @@
     <a href="{{route('hotel.quartos.create',$hotel)}}" class="btn btn-primary mb-2">Cadastrar novo Quarto</a>
 
 </div>
+<div class="col-12 mt-3">
+    @include('donoHotel.Quartos.components.quartos.datatable',[
+        'idBotao'=>'refresh',
+        'idTable' => '#table5',
+    ])
+</div>
 
 
 
 @endsection
+@push('js')
+<script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    
+@endpush

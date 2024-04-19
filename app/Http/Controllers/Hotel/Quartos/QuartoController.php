@@ -81,10 +81,20 @@ class QuartoController extends Controller
 
         foreach($searchs as $search)
         {
+            $routeEdit = route('hotel.quartos.create', $search->id);
+            $btnEdit = "<a href=' $routeEdit' id='$search->id' class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'><i class='fa fa-lg fa-fw fa-pen'></i></a>";
+            
+            $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow excluir-dado btn-delete" title="Excluir" data-dado-id="' . $search->id . '"><i class="fa fa-lg fa-fw fa-trash"></i></button>';
+            
+            $btnDetails = '<a href="'.$routeEdit.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $search->id . '" title="todos usuarios"><i class="fas fa-fw fa-user" aria-hidden="true"></i></a>';
+
+
             $quartosdeHoteislist[]=[
                 'quarto'=>$search->quarto,
                 'valor'=>$search->valor,
                 'tipo_quarto'=>$search->tipo_quarto,
+
+                'btns'=> '<nobr>' . $btnEdit . $btnDelete . $btnDetails . '</nobr>',
             ];
         }
         return response()->json(compact('quartosdeHoteislist'));

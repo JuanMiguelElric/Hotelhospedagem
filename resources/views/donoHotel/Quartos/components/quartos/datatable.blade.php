@@ -1,29 +1,33 @@
 @php
 $heads = [
 
-    'Nome do Hotel',
-    'CNPJ',
-    'Cidade',
+    'Quarto',
+    'Valor',
+    'Tipo do quarto',
     ['label' => 'Actions', 'no-export' => true, 'width' => 5],
-    ['label' => 'Admin', 'no-export' => true, 'width' => 5],
+
 ];
+
+
 $config = [
     'ajax' => [
-        'url'=>'/hoteljson',
-        'dataSrc' => "hotellistdesc",
+        'url'=>'/hotel/quartos/'. $hotel->id,
+        'dataSrc' => "quartosdeHoteislist",
     ],
     'data' => [],
     'order' => [[0, 'asc']],
     'columns' => [
 
-        ['data' => 'nome_hotel'],
-        ['data' => 'cnpj'],
-        ['data'=>'cidade'],
+        ['data' => 'quarto'],
+        ['data' => 'valor'],
+        ['data'=>'tipo_quarto'],
+        ['data'=>'btns']
+    
 
-        ['data' => 'btns'],
-        ['data' => 'btnsAdmin']
+
     ],
 ];
+
 @endphp   
 <x-adminlte-datatable id="table2" :heads="$heads" :config="$config" striped hoverable bordered compressed  />
 

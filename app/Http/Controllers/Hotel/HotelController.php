@@ -87,18 +87,22 @@ class HotelController extends Controller
         $hotellistdesc =[];
         foreach($hoteis as $hotel ){
             $routeEdit = route('hotel.edit', $hotel->id);
+            $routeQuartos = route('hotel.quartos.index',$hotel->id);
             $routedetalhes = route('hotel.show', $hotel->id);
             $btnEdit = "<a href=' $routeEdit' id='$hotel->id' class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'><i class='fa fa-lg fa-fw fa-pen'></i></a>";
             
             $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow excluir-dado btn-delete" title="Excluir" data-dado-id="' . $hotel->id . '"><i class="fa fa-lg fa-fw fa-trash"></i></button>';
             
             $btnDetails = '<a href="'.$routedetalhes.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $hotel->id . '" title="todos usuarios"><i class="fas fa-fw fa-user" aria-hidden="true"></i></a>';
+
+            $btnAdminQuartos = '<a href="'.$routeQuartos.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $hotel->id . '" title="todos quartos" ><i class="fas fa-bed text-teal" aria-hidden="true"></i></a>';
             $hotellistdesc[]= [
           
                 'nome_hotel'=>$hotel->nome_hotel,
                 'cnpj'=>$hotel->cnpj,
                 'cidade'=>$hotel->cidade,
                 'btns'=> '<nobr>' . $btnEdit . $btnDelete . $btnDetails . '</nobr>',
+                'btnsAdmin'=> '<nobr>' . $btnAdminQuartos. '</nobr>',
             ];
         }
         return response()->json(compact('hotellistdesc'));
