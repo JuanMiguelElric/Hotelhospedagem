@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Hotel;
 use App\Models\Imagem;
 use App\Models\Quarto;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use function Laravel\Prompts\search;
 
@@ -81,15 +83,30 @@ class QuartoController extends Controller
 
         foreach($searchs as $search)
         {
-            $routeEdit = route('hotel.quartos.create', $search->id);
+            $routeEdit = route('quartos.edit', $search->id);
             $btnEdit = "<a href=' $routeEdit' id='$search->id' class='btn btn-xs btn-default text-primary mx-1 shadow' title='Editar'><i class='fa fa-lg fa-fw fa-pen'></i></a>";
             
-            $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow excluir-dado btn-delete" title="Excluir" data-dado-id="' . $search->id . '"><i class="fa fa-lg fa-fw fa-trash"></i></button>';
+            $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow excluir-dado btn-delete" title="Excluir" data-dado-id="' . $search->id . '"><i class="fa fa-lg fa-fw fa-trash" aria-hidden="true"></i></button>';
             
             $btnDetails = '<a href="'.$routeEdit.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $search->id . '" title="todos usuarios"><i class="fas fa-fw fa-user" aria-hidden="true"></i></a>';
-
-
+        
+            foreach($search->imagens as $searc) {
+                // Obter o caminho da imagem
+                $imagePath = $searc->path;
+            
+                // Criar a tag de imagem usando a função asset para gerar a URL correta
+                $imageURL = Storage::url($imagePath);
+              
+                
+      
+            
+                // Criar a tag <img> com a URL, classe e texto alternativo
+            }
+            $ImageQuarto = '<img src="' . $imageURL . ' " style="width: 60px; height: 60px;" class="rounded float-left" alt="Imagem do Quarto">';
+            
             $quartosdeHoteislist[]=[
+
+                'imagem'=>'<nobr>' .$ImageQuarto . '</nobr>' ,
                 'quarto'=>$search->quarto,
                 'valor'=>$search->valor,
                 'tipo_quarto'=>$search->tipo_quarto,
@@ -101,16 +118,63 @@ class QuartoController extends Controller
 
 
     }
-    public function edit(){
-        //
+    public function edit(Quarto $quarto){
+        return view('donoHotel.Quartos.Edit', ["quarto"=>$quarto]);
     }
-    public function update(){
-        //
+    public function update(Request $request,Quarto $quarto){
+
+        $hotel = Hotel::find($quarto->hotel->id);
+
+     
+
+        try{
+            $dadosvalid = $request->validate([
+                'quarto'=>'required',
+                'valor'=>'required',
+                'descricao'=>'required',
+                'tipo_quarto'=>'required',
+                'quantidade_pessoas'=>'required'
+
+            ]);
+       
+ 
+            if($quarto->update($dadosvalid)){
+                if($request->json == 1){
+                    return response()->json([
+                        'type'=>'message', "quarto alterado com sucesso "
+                        //
+                    ]);
+                }else{
+                    return redirect()->route("hotel.quartos.index",["hotel"=> $hotel->id]);
+                    echo "aaaaaaaaa";
+                }
+
+            }
+            /*
+            if($request->json == 1){
+                return response()->json([
+                    'type'=>'message', "quarto alterado com sucesso "
+                    //  return redirect()->route("hotel.quartos.index",compact("hotel"));
+                ]);
+            }else{
+              echo "aaaaaaaaa";
+            }
+            */
+        }catch(Exception $e){
+            return response()->json(["type"=>"message", $e->getMessage()]);
+        }
+        
     }
     public function show(){
         //
     }
-    public function destroy(){
+    public function destroy(Quarto $quarto){
+       
+        if( $quarto->delete())
+        {
+            return response()->json(["type"=>"message","Quarto excluido com sucesso"],200);
+        }
+        return response()->json(['type' => 'error', 'message' => 'Erro ao excluir!']);
         //
     }
 }

@@ -22,3 +22,7 @@
 <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     
 @endpush
+@section('plugins.Datatables', true)
+@section('plugins.DatatablesExport', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Toastr', true)

@@ -1,20 +1,21 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Editar quarto')
 @section('content')
 
 <div class="row">
     <div class="col-12">
         <x-adminlte-card title="Registrar meu Hotel" theme="light" theme-mode="full" class="elevation-3 text-black"
-        body-class="bg-light" header-class="bg-primary" footer-class="bg-primary border-top rounded border-light"
+        body-class="bg-light" header-class="bg-primary" footer-class="bg-light border-top rounded border-light"
         icon="" collapsible>
-                <form action="{{route('hotel.quartos.store', $hotel) }}" method="POST" id="form">
+                <form action="{{route('quartos.update', $quarto) }}" method="POST" id="form">
                 @csrf
+                @method('PUT')
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             {{-- inputs --}}
                             <x-adminlte-input name="quarto" placeholder="Informe aqui o numero do quarto:"
-                                        label="Informe aqui o numero do quarto:" value="{{ old('quarto') }}" />
+                                        label="Informe aqui o numero do quarto:" value="{{ $quarto->quarto}}" />
                                         
                                         
                                         
@@ -22,7 +23,7 @@
                         <div class="col-md-3">
                             {{-- inputs --}}
                             <x-adminlte-input name="valor" placeholder="R$00.00"
-                                        label="Informe aqui o valor do quarto:" data-mask="R$000.00" value="{{ old('setor') }}" />
+                                        label="Informe aqui o valor do quarto:" data-mask="R$00.000.00" value="{{ $quarto->valor }}" />
                                         
                                         
                                         
@@ -30,7 +31,7 @@
                         <div class="col-md-3">
                             {{-- inputs --}}
                             <x-adminlte-input name="quantidade_pessoas" placeholder="000"
-                                        label="quantidade de pessoas para esse quarto" data-mask="0000" value="{{ old('setor') }}" />
+                                        label="quantidade de pessoas para esse quarto" data-mask="0000" value="{{ $quarto->quantidade_pessoas }}" />
                                         
                                         
                                         
@@ -47,7 +48,7 @@
                         <div class="col-12">
                             
 
-                            <x-adminlte-select label="Selecione aqui uma avaliação para o usuário responder" id="tipo_pergunta" name="tipo_quarto"
+                            <x-adminlte-select label="Selecione aqui o tipo do quarto:" id="tipo_pergunta" name="tipo_quarto"
                             class="select-options">
                             
                                     
@@ -66,7 +67,8 @@
                         <div class="col-md-12">
                             {{-- inputs --}}
                             <x-adminlte-textarea name="descricao"  placeholder="Informações adicionais do quarto"
-                            label="Informações adicionais do quarto"  value="{{ old('cep') }}" >
+                            label="Informações adicionais do quarto"  >
+                            {{$quarto->descricao}}
                             </x-adminlte-textarea>
           
                                         
@@ -79,7 +81,7 @@
  
                     <x-slot name="footerSlot">
                         <x-adminlte-button type="submit" form="form" class="d-flex ml-auto" theme="primary"
-                            label="Enviar" icon="fas fa-sign-in" />
+                            label="Editar Quarto" icon="fas fa-sign-in" />
                     </x-slot>
                 </form>
         </x-adminlte-card>
@@ -87,9 +89,6 @@
 </div>
 
 @endsection
-
-
-
 @push('js')
 <script>
     const textDesc = document.querySelector('#descricao');
@@ -103,4 +102,3 @@
 <script src="{{ asset('resources/jquery.mask.js') }}"></script>
 
 @endpush
-

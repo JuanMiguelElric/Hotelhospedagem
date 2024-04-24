@@ -95,7 +95,7 @@ class HotelController extends Controller
             
             $btnDetails = '<a href="'.$routedetalhes.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $hotel->id . '" title="todos usuarios"><i class="fas fa-fw fa-user" aria-hidden="true"></i></a>';
 
-            $btnAdminQuartos = '<a href="'.$routeQuartos.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $hotel->id . '" title="todos quartos" ><i class="fas fa-bed text-teal" aria-hidden="true"></i></a>';
+            $btnAdminQuartos = '<a href="'.$routeQuartos.'" class="btn btn-xs btn-default text-teal mx-1 shadow show-dado" data-dado-id="' . $hotel->id . '" title="todo" ><i class="fas fa-bed text-teal" aria-hidden="true"></i></a>';
             $hotellistdesc[]= [
           
                 'nome_hotel'=>$hotel->nome_hotel,

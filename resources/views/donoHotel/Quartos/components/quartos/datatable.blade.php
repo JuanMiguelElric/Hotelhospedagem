@@ -1,6 +1,6 @@
 @php
 $heads = [
-
+    'Imagem',
     'Quarto',
     'Valor',
     'Tipo do quarto',
@@ -18,6 +18,7 @@ $config = [
     'order' => [[0, 'asc']],
     'columns' => [
 
+        ['data'=>'imagem'],
         ['data' => 'quarto'],
         ['data' => 'valor'],
         ['data'=>'tipo_quarto'],
@@ -52,4 +53,7 @@ $config = [
 
     <script src="{{ asset('resources/requisicaoAjax.js') }}"></script>
 @endpush 
+@push('js')
+@include("donoHotel.Quartos.components.quartos.delete")
+@endpush
     

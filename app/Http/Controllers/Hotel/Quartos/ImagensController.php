@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Imagem;
 use App\Models\Quarto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -36,7 +37,7 @@ class ImagensController extends Controller
                 if ($check) {
                 
                     $nameImage = $img->getClientOriginalName();
-                    $path = $img->store('images'); // Armazena a imagem no diretório storage/app/images
+                    $path = $img->store('public'); // Armazena a imagem no diretório storage/app/images
                    // $img->move(public_path('images'), $nameImage); // Move a imagem para public/images
                     // Salve o nome do arquivo no banco de dados, se necessário
                     // Imagem::create(['nome' => $nameImage, 'path' => $path]);
@@ -72,7 +73,8 @@ class ImagensController extends Controller
 
     }
     public function show(){
-        //
+        $url = Storage::url('public/AE0EXsgc2FTBp6FOdQAJBAGTkClQCzAV5avx5cvC.jpg');
+        return '<img src="' . $url . ' " style="width: 60px; height: 60px;" class="rounded float-left" alt="Imagem do Quarto">';
     }
     public function destroy(){
         //

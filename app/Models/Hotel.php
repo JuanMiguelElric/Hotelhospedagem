@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Hotel extends Model
 {
@@ -22,4 +23,10 @@ class Hotel extends Model
         'numero', 
         'dono_hotel_id'
     ];
+
+    // filhas
+    public function quartos():HasMany
+    {
+        return $this->hasMany(Quarto::class);
+    }
 }

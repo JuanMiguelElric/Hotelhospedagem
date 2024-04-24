@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quarto extends Model
@@ -18,8 +19,13 @@ class Quarto extends Model
         'tipo_quarto',
         'hotel_id',
     ];
+
+    public function hotel():BelongsTo
+    {
+        return $this->belongsTo(Hotel::class);
+    }
     public function imagens():HasMany
     {
-        return $this->hasMany(Imagem::class);
+        return $this->hasMany(Imagem::class,'quartos_id');
     }
 }
