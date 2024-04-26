@@ -1,0 +1,28 @@
+.fundoQuartos{
+    padding-top:10px;
+    padding-left:10%;
+    padding-bottom: 30%;
+    width: 100%;
+    background-color: rgb(213, 213, 199);
+    border-radius: 20px;
+
+}
+.quartosCard
+{
+    width: 340;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-right: 7%;
+    padding-bottom: 6px;
+    
+}
+.Imagens{
+    border-right: 3px solid black;
+}
+.imageQuartos{
+    width: 70%;
+}

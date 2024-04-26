@@ -105,26 +105,56 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid bg-info d-flex flex-wrap justify-content-around">
+        <div class="container-fluid fundoQuartos shadow-lg d-flex flex-wrap ">
  
             @if($quartos->isNotEmpty())
                 @foreach ($quartos as $quarto)
-                    <div class="quarto-list">
-                        <p>{{ $quarto->quarto }}</p>
-                      
+                    @foreach ($quarto->imagens as $quart)
+                        @php
+                            $imagen = $quart->path;
+                            $imagenUrl = Storage::url($imagen);
+                        @endphp
+                    @endforeach
+                
+                    <div class="quartosCard row">
+                        <div class="col-3 Imagens">
+                            <img src="{{ $imagenUrl }}" class="imageQuartos" alt="">
+                        </div>
+                        <div class="col-6">
+                            <p class="ml-2"><strong>Nome:</strong> {{ $quarto->quarto }} </p>
+                            <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
+                            <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
+                            <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}</p>
+                        </div>
                     </div>
                 @endforeach
             @else 
                
                 @foreach ($quartos as $quarto)
-                    <div class="quarto-list">
-                        <p class="ml-2">{{ $quarto->quarto }} </p>
-                        <p>{{ $quarto->descricao }}</p>
-                    
+                    @foreach ($quarto->imagens as $quart)
+                        @php
+                            $imagen = $quart->path;
+                            $imagenUrl = Storage::url($imagen);
+                        @endphp
+                    @endforeach
+                
+                    <div class="quartosCard row">
+                        <div class="col-3 Imagens">
+                            <img src="{{ $imagenUrl }}" class="imageQuartos" alt="">
+                        </div>
+                        <div class="col-6">
+                            <p class="ml-2"><strong>Nome:</strong> {{ $quarto->quarto }} </p>
+                            <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
+                            <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
+                            <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}</p>
+                        </div>
                     </div>
                 @endforeach
+    
             @endif
+ 
         </div>
+     
                 
 
 </body>
