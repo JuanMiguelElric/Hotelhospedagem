@@ -97,10 +97,10 @@
 
                     </div>
                     <div class="col-4">
-                        aaaaaaaa
+                        Observaraa
                     </div>
                     <div class="col-4">
-                        aaaaaaa
+                        Observara
                     </div>
                 </div>
             </div>
@@ -116,15 +116,16 @@
                         @endphp
                     @endforeach
                 
-                    <div class="quartosCard row">
-                        <div class="col-3 Imagens">
+                    <div class="quartosCard d-flex flex-nowrap">
+                        <div class=" Imagens">
                             <img src="{{ $imagenUrl }}" class="imageQuartos" alt="">
                         </div>
-                        <div class="col-6">
-                            <p class="ml-2"><strong>Nome:</strong> {{ $quarto->quarto }} </p>
+                        <div class="p-1">
+                            <p class="ml-2"><strong>Quarto:</strong> {{ $quarto->quarto }} </p>
                             <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
                             <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
                             <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}</p>
+                            <button class="btn btn-outline-primary btn-info">Observar</button>
                         </div>
                     </div>
                 @endforeach
@@ -138,15 +139,16 @@
                         @endphp
                     @endforeach
                 
-                    <div class="quartosCard row">
-                        <div class="col-3 Imagens">
+                    <div class="quartosCard d-flex flex-nowrap">
+                        <div class=" Imagens">
                             <img src="{{ $imagenUrl }}" class="imageQuartos" alt="">
                         </div>
-                        <div class="col-6">
-                            <p class="ml-2"><strong>Nome:</strong> {{ $quarto->quarto }} </p>
+                        <div class="">
+                            <p class="ml-2"><strong>Quarto:</strong> {{ $quarto->quarto }} </p>
                             <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
                             <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
                             <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}</p>
+                            <button class="btn btn-outline-primary btn-info ">Observar</button>
                         </div>
                     </div>
                 @endforeach
