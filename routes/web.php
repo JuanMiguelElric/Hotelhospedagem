@@ -4,6 +4,7 @@ use App\Http\Controllers\cidade\CidadeController;
 use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\Quartos\ImagensController;
 use App\Http\Controllers\Hotel\Quartos\QuartoController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,9 +33,13 @@ Route::middleware(['auth','user-access:donohotel'])->group(function(){
     Route::get('/hotel/quartos/{id}',[QuartoController::class ,'QuartoJson'])->name('quarto.json');
 
 });
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth','user-access:user'])->group(function(){
+
+    //Rotas Destinadas a usuarios logados
+
 });
+Route::get('/',[WelcomeController::class, 'Index'])->name('home');
+
 
 Auth::routes();
 

@@ -73,8 +73,7 @@ class ImagensController extends Controller
 
     }
     public function show(){
-        $url = Storage::url('public/AE0EXsgc2FTBp6FOdQAJBAGTkClQCzAV5avx5cvC.jpg');
-        return '<img src="' . $url . ' " style="width: 60px; height: 60px;" class="rounded float-left" alt="Imagem do Quarto">';
+        //
     }
     public function destroy(){
         //
