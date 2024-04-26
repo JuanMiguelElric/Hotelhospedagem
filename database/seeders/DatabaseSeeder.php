@@ -42,6 +42,6 @@ class DatabaseSeeder extends Seeder
             
         }*/
         Model::unguard( );
-        $this->call(EstadosSeeder::class);
+        $this->call(UsersSeeder::class);
     }
 }

@@ -16,20 +16,29 @@ class UsersSeeder extends Seeder
     {
         $usersData = [
             [
-               'name'   =>'Admin',
+               'name'   =>'donohotel1',
                'cpf'=>'15979124098',
-                'type' => 1,
-               'email'  =>'admin@example.com',
+                'type' => 0,
+                'email' => 'donohotel1@example.com',
                'password' => Hash::make('12345678')
             ],
             [
-               'name'       => 'donohotel',
-               'email'      => 'donohotel@example.com',
+               'name'       => 'donohotel2',
+               'email'      => 'donohotel2@example.com',
                'cpf'=>'11111111111',
                'type'   => 0,
                'password'   => Hash::make('12345678')
                 
             ],
+            [
+               'name'       => 'Ricado',
+               'email'      => 'donohotelricador1@example.com',
+               'cpf'=>'148.302.640-04',
+               'type'   => 0,
+               'password'   => Hash::make('12345678')
+                
+            ],
+            
         ];
         foreach ($usersData as $key => $val) {
             User::create($val);

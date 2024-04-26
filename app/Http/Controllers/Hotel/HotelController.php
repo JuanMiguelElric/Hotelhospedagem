@@ -76,8 +76,12 @@ class HotelController extends Controller
     }
 
     public function HotelJson(){
-        $hoteis =  Hotel::all();
-
+       // $hoteis =  Hotel::all();
+       
+        
+        $hoteis = Hotel::where('dono_hotel_id', auth()->id())->get();
+     
+    
         if($hoteis->isEmpty()){
             return response()->json(["type" => "error", "empresas" => []], 200);
 
