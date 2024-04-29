@@ -177,4 +177,12 @@ class QuartoController extends Controller
         return response()->json(['type' => 'error', 'message' => 'Erro ao excluir!']);
         //
     }
+
+    public function ApresentarQuarto(Hotel $hotel,Quarto $quarto){
+       
+        
+
+        return view('home.quartos.produto',compact(['hotel', 'quarto']));
+
+    }
 }

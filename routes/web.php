@@ -39,6 +39,7 @@ Route::middleware(['auth','user-access:user'])->group(function(){
 
 });
 Route::get('/',[WelcomeController::class, 'Index'])->name('home');
+Route::get('/hotel/{hotel}/quarto/{quarto}/quartescohido', [QuartoController::class,'ApresentarQuarto'])->name('hotel.quarto.apresentar');
 
 
 Auth::routes();

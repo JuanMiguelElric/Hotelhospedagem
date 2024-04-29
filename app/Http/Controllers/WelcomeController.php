@@ -19,7 +19,7 @@ class WelcomeController extends Controller
         ->get();
        
 
-        return view('welcome', compact('quartos'));
+        return view('home.quartos.home', compact('quartos'));
     }
  
 }

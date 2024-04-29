@@ -22,6 +22,7 @@
 
     
 }
+
 .Imagens{
     border-right: 3px solid black;
     margin-right: 10px;
@@ -30,4 +31,8 @@
 }
 .imageQuartos{
     width: 10em;
+}
+/*imagem para venda */
+.imagem_unica{
+    width:100%;
 }
