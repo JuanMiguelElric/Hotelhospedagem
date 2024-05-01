@@ -178,11 +178,12 @@ class QuartoController extends Controller
         //
     }
 
-    public function ApresentarQuarto(Hotel $hotel,Quarto $quarto){
+    public function ApresentarQuarto( Hotel $hotel,Quarto $quarto){
        
-        
+        $maisquartos = Quarto::where('hotel_id', $hotel->id)->get();
+   
 
-        return view('home.quartos.produto',compact(['hotel', 'quarto']));
+        return view('home.quartos.produto',compact(['hotel', 'quarto','maisquartos']));
 
     }
 }

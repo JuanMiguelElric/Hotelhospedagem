@@ -24,17 +24,19 @@ class ImagensController extends Controller
             'image.*'=>'required|image|mimes:png,jpg',
         ]);
         //recebe o arquivo que foi adicionado no campo input no meu front end
-
         
 
+        
+      
         if ($request->hasFile('image')) {
             $extensoesImage = ['jpeg', 'png', 'jpg', 'pdf'];
         
             foreach ($request->file('image') as $img) {
                 $extension = $img->getClientOriginalExtension();
                 $check = in_array($extension, $extensoesImage);
-        
+                // verifica se é um array 
                 if ($check) {
+                    //caso exista
                 
                     $nameImage = $img->getClientOriginalName();
                     $path = $img->store('public'); // Armazena a imagem no diretório storage/app/images

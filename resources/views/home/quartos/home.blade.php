@@ -32,6 +32,7 @@
     </div>
 </div>
 <div class="container-fluid fundoQuartos shadow-lg d-flex flex-wrap ">
+    
 
     @if($quartos->isNotEmpty())
         @foreach ($quartos as $quarto)
@@ -51,7 +52,13 @@
                     <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
                     <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
                     <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}<strong>/noite</strong></p>
-                    <button class="btn btn-outline-primary btn-info">Observar</button>
+                    @php
+                        $hotel = $quarto->hotel_id;
+                    
+                    @endphp
+                    <a href="{{ route('hotel.quarto.apresentar',[$hotel,$quarto->id])}}">
+                        <button class="btn btn-outline-primary btn-info ">Observar</button>
+                    </a>
                 </div>
             </div>
         @endforeach
@@ -74,7 +81,13 @@
                     <p class="ml-2"><strong>Hotel:</strong> {{ $quarto->hotel->nome_hotel }}</p>
                     <p class="ml-2"><strong>Cidade:</strong> {{ $quarto->hotel->cidade }}</p>
                     <p class="ml-2"><strong>Valor:</strong> {{ $quarto->valor }}</p>
-                    <button class="btn btn-outline-primary btn-info ">Observar</button>
+                    @php
+                        $hotel = $quarto->hotel_id;
+                        dd($hotel);
+                    @endphp
+                    <a href="{{ route('hotel.quarto.apresentar',[$quarto->id,$hotel])}}">
+                        <button class="btn btn-outline-primary btn-info ">Observar</button>
+                    </a>
                 </div>
             </div>
         @endforeach
