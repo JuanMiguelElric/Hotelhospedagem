@@ -65,5 +65,36 @@
 .active {
 	scroll-snap-type: unset;
 }
+.formulario{
+    width: 50%;
+    padding-top: 1em;
+    background-color: rgb(252, 249, 244);
+    
+    gap: 3em;
+}
+.inputFor{
+    
+    width: 30em;
+    height:3em;
+    border-radius: 10em;
+    border-color: rgba(58, 58, 180, 0.451);
+    margin-bottom: 1em;
+}
+.form{
+    padding-left: 7em;
+    padding-right: 7em;
+}
+
+.error {
+    color: red; 
+}
+
+.warning {
+    color: orange; 
+}
+
+.success {
+    color: green; 
+}
 
 

@@ -13,7 +13,11 @@
     'resources/sass/app.scss',
     'resources/sass/phrssec/app.scss',
     'resources/js/app.js',
-    ])
+    ]);
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('resources/css/app.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

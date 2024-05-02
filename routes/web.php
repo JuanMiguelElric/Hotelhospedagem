@@ -4,6 +4,7 @@ use App\Http\Controllers\cidade\CidadeController;
 use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\Quartos\ImagensController;
 use App\Http\Controllers\Hotel\Quartos\QuartoController;
+use App\Http\Controllers\RegistroUserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +41,9 @@ Route::middleware(['auth','user-access:user'])->group(function(){
 });
 Route::get('/',[WelcomeController::class, 'Index'])->name('home');
 Route::get('/hotel/{hotel}/quarto/{quarto}/quartescohido', [QuartoController::class,'ApresentarQuarto'])->name('hotel.quarto.apresentar');
-
+Route::resource('usuario',RegistroUserController::class)->only(['create','store'])->missing(function(){
+    return to_route('home');
+});
 
 Auth::routes();
 
