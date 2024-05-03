@@ -4,6 +4,7 @@ use App\Http\Controllers\cidade\CidadeController;
 use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\Quartos\ImagensController;
 use App\Http\Controllers\Hotel\Quartos\QuartoController;
+use App\Http\Controllers\LoginUsuarioController;
 use App\Http\Controllers\RegistroUserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::middleware(['auth','user-access:donohotel'])->group(function(){
 
 });
 Route::middleware(['auth','user-access:user'])->group(function(){
+    Route::get('/',[WelcomeController::class, 'Index'])->name('home');
 
     //Rotas Destinadas a usuarios logados
 
@@ -44,6 +46,9 @@ Route::get('/hotel/{hotel}/quarto/{quarto}/quartescohido', [QuartoController::cl
 Route::resource('usuario',RegistroUserController::class)->only(['create','store'])->missing(function(){
     return to_route('home');
 });
+Route::resource('acesso',LoginUsuarioController::class)->only(['create','store'])->missing((function(){
+    return to_route('home');
+}));
 
 Auth::routes();
 

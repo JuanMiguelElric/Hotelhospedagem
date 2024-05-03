@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Password:</label><br>
-                        <input class="inputFor form-control"  type="password">
+                        <input class="inputFor form-control" name="password"  type="password">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -48,12 +48,14 @@
                     
                     <div class="d-grid gap-2 mt-2">
                         <button class="btn btn-success" type="button">
-                            <a href="{{route('login')}}">
+                            <a class="text-light nav-link" href="{{route('login')}}">
                                 Possuo Conta já
                             </a>
                         
                         </button>
                     </div>
+                </form>
+
                       
                   
 
