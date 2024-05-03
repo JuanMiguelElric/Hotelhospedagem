@@ -47,7 +47,12 @@
                     </div>
                     
                     <div class="d-grid gap-2 mt-2">
-                        <button class="btn btn-success" type="button">Possuo Conta já</button>
+                        <button class="btn btn-success" type="button">
+                            <a href="{{route('login')}}">
+                                Possuo Conta já
+                            </a>
+                        
+                        </button>
                     </div>
                       
                   

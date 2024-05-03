@@ -48,13 +48,13 @@
                     <div class=" float-right " >
                       <ul class="navbar-nav text-light row d-flex flex-row d-flex justify-content-around">
                         <li class=" col-3 nav-item mr-3 active">
-                          <a class=" text-light nav-link " href="#">Home </a>
+                          <a class=" text-light nav-link " href="{{route('home')}}">Home </a>
                         </li>
                         <li class="col-3 nav-item ml-3">
-                          <a class=" text-light nav-link " href="#">Features </a>
+                          <a class=" text-light nav-link " href="#"> Faça uma Doação </a>
                         </li>
                         <li class="col-3 nav-item mr-5">
-                          <a class=" text-light nav-link " href="#">Pricing</a>
+                          <a class=" text-light nav-link " href="#">Quero Cadastrar meu Hotel</a>
                         </li>
                         @if (Route::has('login'))
                             <li class="col-3 nav-item mr-2">
@@ -66,7 +66,7 @@
                     
                                             @if (Route::has('register'))
                                                 
-                                                <a href="{{ route('register') }}" class="  text-light nav-link">/Register</a>
+                                                <a href="{{ route('usuario.create') }}" class="  text-light nav-link">/Register</a>
                                             @endif
                                         @endauth
                                     </div>
