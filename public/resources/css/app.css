@@ -96,5 +96,21 @@
 .success {
     color: green; 
 }
+.quartosCardPedidos
+{
+    width: auto;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-right: 10px;
+    
+}
+.imageQuartosPedidos{
+    width: 17em;
+}
 
 

@@ -42,7 +42,7 @@ class RegistroUserController extends Controller
             if($request->json == 1){
                 return response()->json(['type'=>'succes','message'=>'Usuario criado com sucesso'],200);
             }
-            return redirect()->route('/');
+            return redirect()->route('acesso.create');
         }
         if($request->json ==1){
             return response()->json(['type'=> 'error', 'message' =>'Erro ao criar usuario'],400);

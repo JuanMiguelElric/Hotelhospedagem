@@ -33,40 +33,44 @@
                     <li><small><strong>Quantidade de pessoas : {{$quarto->quantidade_pessoas}}</strong></small></li>
                     <li><small><strong>Bairro: {{$hotel->bairro}}</strong></small></li>
                 </ul>
-                <div class="d-flex  gap-3">
-                    <div class="mr-3">
-                        <input type="date" id="start" class="data" name="trip-start" value="" onchange="DataInicial()" min="2024-05-01" max="2025-12-31" />
-    
-                    </div>
-                    <div class="ml-3">
-                        <input type="date" id="finall" class="data" name="trip-start" value="" onchange="DataFinal()" min="2024-05-01" max="2025-12-31" />
-    
-                    </div>
-                
+                <form action="{{route('pedidos.store', [$hotel->id, $quarto->id])}}" method="POST">
+                    @csrf
+
+                    <div class="d-flex  gap-3">
+                        <div class="mr-3">
+                            <input type="date" id="start" class="data" name="data_inicial" value="" onchange="DataInicial()" min="2024-05-01" max="2025-12-31" />
+        
+                        </div>
+                        <div class="ml-3">
+                            <input type="date" id="finall" class="data" name="data_final" value="" onchange="DataFinal()" min="2024-05-01" max="2025-12-31" />
+        
+                        </div>
                     
-                </div>
-                <div class="mt-3">
-                    <small>dias de hospedagem:</small>
-                    <div class="numero_dedias rounded border border-dark" >
-                        <p id="valor"></p>
+                        
+                    </div>
+                    <div class="mt-3">
+                        <small>dias de hospedagem:</small>
+                        <div class="numero_dedias rounded border border-dark" >
+                            <p id="valor"></p>
+        
+                        </div>
     
                     </div>
-
-                </div>
-
     
-                <br>
-                
-                <div>
-                    <h2 id="quartovalor">{{$quarto->valor}}<small>/noite</small>
-                    </h2>
-                    <small>{{$quarto->tipo_quarto}}</small>
-                </div>
-
-                <button class="btn btn-primary btn-lg btn-block">Adicionar ao carrinho</button>
-                <br>
-                <br>
-                <button class="btn btn-success btn-lg btn-block">Reservar</button>
+        
+                    <br>
+                    
+                    <div>
+                        <input type="text" name="valor" value="{{$quarto->valor}}">
+                        <h2 id="quartovalor">{{$quarto->valor}}<small>/noite</small>
+                        </h2>
+                        <small>{{$quarto->tipo_quarto}}</small>
+                    </div>
+    
+    
+                    <br>
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Reservar</button>
+                </form>
 
                
                 

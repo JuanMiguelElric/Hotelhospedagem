@@ -28,4 +28,8 @@ class Quarto extends Model
     {
         return $this->hasMany(Imagem::class,'quartos_id');
     }
+    public function pedidosnaofinalizados():HasMany
+    {
+        return $this->hasMany(PedidosnaoFinalizado::class);
+    }
 }

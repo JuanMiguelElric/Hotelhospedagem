@@ -5,8 +5,10 @@ use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\Quartos\ImagensController;
 use App\Http\Controllers\Hotel\Quartos\QuartoController;
 use App\Http\Controllers\LoginUsuarioController;
+use App\Http\Controllers\Pedidos\PedidosnaofinalizadosController;
 use App\Http\Controllers\RegistroUserController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\PedidosnaoFinalizado;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware(['auth','user-access:admin'])->group(function(){
     Route::get('/home/administrador', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home');
-
+    
 });
 Route::middleware(['auth','user-access:donohotel'])->group(function(){
     Route::resources( [
@@ -33,10 +35,14 @@ Route::middleware(['auth','user-access:donohotel'])->group(function(){
     Route::get('/hoteljson',[HotelController::class ,'HotelJson'])->name('hotel.json');
     Route::get('/quartos/image/{id}', [ImagensController::class, 'ImageJson'])->name('image.quarto.json');
     Route::get('/hotel/quartos/{id}',[QuartoController::class ,'QuartoJson'])->name('quarto.json');
+    
 
 });
 Route::middleware(['auth','user-access:user'])->group(function(){
     Route::get('/',[WelcomeController::class, 'Index'])->name('home');
+    
+    Route::get('/pedidos',[PedidosnaofinalizadosController::class,'index'])->name('pedidos.index');
+    Route::post('/pedidos/hotel/{hotel}/quarto/{quarto}',[PedidosnaofinalizadosController::class, 'store'])->name('pedidos.store');
 
     //Rotas Destinadas a usuarios logados
 

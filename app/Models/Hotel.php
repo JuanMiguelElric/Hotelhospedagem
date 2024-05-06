@@ -29,4 +29,8 @@ class Hotel extends Model
     {
         return $this->hasMany(Quarto::class);
     }
+    public function pedidosnaofinalizados():HasMany
+    {
+        return $this->hasMany(PedidosnaoFinalizado::class);
+    }
 }
