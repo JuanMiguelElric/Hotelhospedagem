@@ -61,7 +61,7 @@
                     <br>
                     
                     <div>
-                        <input type="text" name="valor" value="{{$quarto->valor}}">
+                        <input type="text" name="valor" style="display: none;" value="{{$quarto->valor}}">
                         <h2 id="quartovalor">{{$quarto->valor}}<small>/noite</small>
                         </h2>
                         <small>{{$quarto->tipo_quarto}}</small>

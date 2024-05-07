@@ -5,6 +5,7 @@ use App\Http\Controllers\Hotel\HotelController;
 use App\Http\Controllers\Hotel\Quartos\ImagensController;
 use App\Http\Controllers\Hotel\Quartos\QuartoController;
 use App\Http\Controllers\LoginUsuarioController;
+use App\Http\Controllers\Pedidos\Pagamento\PagamentoController;
 use App\Http\Controllers\Pedidos\PedidosnaofinalizadosController;
 use App\Http\Controllers\RegistroUserController;
 use App\Http\Controllers\WelcomeController;
@@ -43,7 +44,7 @@ Route::middleware(['auth','user-access:user'])->group(function(){
     
     Route::get('/pedidos',[PedidosnaofinalizadosController::class,'index'])->name('pedidos.index');
     Route::post('/pedidos/hotel/{hotel}/quarto/{quarto}',[PedidosnaofinalizadosController::class, 'store'])->name('pedidos.store');
-
+    Route::get('/pagamento',[PagamentoController::class,'create'])->name('pagamento.create');
     //Rotas Destinadas a usuarios logados
 
 });

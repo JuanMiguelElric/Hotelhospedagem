@@ -48,7 +48,7 @@
                     
                     <div class="d-grid gap-2 mt-2">
                         <button class="btn btn-success" type="button">
-                            <a class="text-light nav-link" href="{{route('login')}}">
+                            <a class="text-light nav-link" href="{{route('acesso.create')}}">
                                 Possuo Conta já
                             </a>
                         

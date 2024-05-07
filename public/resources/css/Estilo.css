@@ -1,0 +1,97 @@
+.container form .form-row{
+    display: flex;
+
+    margin: 32px 32px;
+  }
+.inputCard{
+    width: 16em;
+}
+  form .form-row .input-data{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 40px;
+    margin-right: 40px;
+
+    position: relative;
+  }
+
+  .input-data input{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid rgba(0,0,0, 0.12);
+  }
+  .input-data input:focus ~  label,
+  .input-data input:valid ~  label{
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #3498db;
+  }
+
+  .input-data label{
+    position: absolute;
+    pointer-events: none;
+    bottom: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+
+  
+
+  .input-data .underline{
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+  }
+  .input-data .underline::before{
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: #3498db;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  .input-data input:focus ~ .underline::before,
+  .input-data input:valid ~ .underline::before,
+  .textarea textarea:focus ~ .underline::before,
+  .textarea textarea:valid ~ .underline::before{
+    transform: scale(1);
+  }
+
+  :root {
+    --arrow-bg: rgba(255, 255, 255, 0.3);
+    --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+    --option-bg: white;
+    --select-bg: rgba(255, 255, 255, 0.2);
+  }
+
+  /* <select> styles */
+  select {
+    /* Reset */
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    /* Personalize */
+    width: 90%;
+    padding: 1rem 4rem 1rem 1rem;
+    border-radius: 0.25em;
+    box-shadow: 0 2px 0em 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    /* Remove IE arrow */
+    &::-ms-expand {
+      display: none;
+    }
+    /* Remove focus outline */
+    &:focus {
+      outline: none;
+    }
+    /* <option> colors */
+   
+  }
+  
